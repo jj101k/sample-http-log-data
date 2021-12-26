@@ -33,7 +33,11 @@ export abstract class Base {
      * @param suppliedTemporaryDirectory
      * @param randomLineLengths
      */
-    constructor(public lines: number, protected suppliedTemporaryDirectory?: string, private randomLineLengths: boolean = false) {
+    constructor(
+        public lines: number,
+        protected suppliedTemporaryDirectory?: string,
+        private randomLineLengths: boolean = false
+    ) {
     }
 
     /**
