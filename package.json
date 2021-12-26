@@ -1,0 +1,32 @@
+{
+  "name": "sample-http-log-data",
+  "version": "1.0.0",
+  "description": "Generators for sample HTTP logs. Intended to support log analysis tests where real logs aren't available.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "rm -rf dist; tsc",
+    "test": "mocha --require ts-node/register test/**/*.test.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jj101k/sample-http-log-data.git"
+  },
+  "keywords": [
+    "log",
+    "test"
+  ],
+  "author": "Jim Driscoll",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/jj101k/sample-http-log-data/issues"
+  },
+  "homepage": "https://github.com/jj101k/sample-http-log-data#readme",
+  "devDependencies": {
+    "@types/mocha": "^9.0.0",
+    "@types/node": "^16.7.1",
+    "mocha": "^9.1.1",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.3.5"
+  }
+}
