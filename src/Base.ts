@@ -6,6 +6,12 @@ export abstract class Base {
     protected abstract readonly logType: string
     protected readonly writeBlockLines = 10_000
 
+    protected builtTemporaryDirectory?: string
+
+    protected get temporaryDirectory() {
+        return this.suppliedTemporaryDirectory ?? this.builtTemporaryDirectory
+    }
+
     protected getContent(offset: number) {
         if(this.randomLineLengths) {
             return "#".repeat(Math.floor(Math.random() * 256))
@@ -15,19 +21,19 @@ export abstract class Base {
     }
 
     protected initTemporaryDirectory() {
-        if(!this.temporaryDirectory) {
+        if(this.temporaryDirectory === undefined) {
             const osTempPath = os.tmpdir()
-            this.temporaryDirectory = fs.mkdtempSync(`${osTempPath}${path.sep}`)
+            this.builtTemporaryDirectory = fs.mkdtempSync(`${osTempPath}${path.sep}`)
         }
     }
 
     /**
      *
      * @param lines The number of lines to create
-     * @param temporaryDirectory
+     * @param suppliedTemporaryDirectory
      * @param randomLineLengths
      */
-    constructor(public lines: number, protected temporaryDirectory?: string, private randomLineLengths: boolean = false) {
+    constructor(public lines: number, protected suppliedTemporaryDirectory?: string, private randomLineLengths: boolean = false) {
     }
 
     /**
@@ -53,8 +59,8 @@ export abstract class Base {
         if(this.filename) {
             fs.rmSync(this.filename)
         }
-        if(this.temporaryDirectory) {
-            fs.rmdirSync(this.temporaryDirectory)
+        if(this.builtTemporaryDirectory) {
+            fs.rmdirSync(this.builtTemporaryDirectory)
         }
     }
 }
