@@ -3,7 +3,7 @@ import fs from "fs"
 import assert from "assert"
 import path from "path"
 
-describe("Syslog", () => {
+describe("Base functionality", () => {
     describe("Writes with supplied dir", function() {
         let dir: string
         beforeEach(() => {
