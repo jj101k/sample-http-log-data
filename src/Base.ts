@@ -2,6 +2,16 @@ import * as fs from "fs"
 import * as path from "path"
 import * as os from "os"
 
+/**
+ * Behaviour options
+ */
+export interface Options {
+    /**
+     * Log activity
+     */
+    log?: boolean,
+}
+
 export abstract class Base {
     protected abstract readonly logType: string
     protected readonly writeBlockLines = 10_000
@@ -28,15 +38,28 @@ export abstract class Base {
     }
 
     /**
+     * Log a message, if that is turned on.
+     *
+     * @param message
+     */
+    protected log(message: string) {
+        if(this.options.log) {
+            console.log(message)
+        }
+    }
+
+    /**
      *
      * @param lines The number of lines to create
      * @param suppliedTemporaryDirectory
      * @param randomLineLengths
+     * @param options
      */
     constructor(
         public lines: number,
         protected suppliedTemporaryDirectory?: string,
-        private randomLineLengths: boolean = false
+        private randomLineLengths: boolean = false,
+        protected options: Options = {}
     ) {
     }
 

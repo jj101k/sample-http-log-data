@@ -9,7 +9,7 @@ export class ISODate extends Base {
      */
     build() {
         this.initTemporaryDirectory()
-        console.log(`Creating large file ${this.filename}`)
+        this.log(`Creating large file ${this.filename}`)
 
         const start = new Date()
         const fileHandle = fs.openSync(this.filename!, "w")
@@ -30,6 +30,6 @@ export class ISODate extends Base {
         const finish = new Date()
         const elapsedMs = finish.valueOf() - start.valueOf()
         const stat = fs.statSync(this.filename!)
-        console.log(`Finished creating file after ${elapsedMs}ms, size is ${(stat.size / 1024 / 1024).toFixed(1)}MB`)
+        this.log(`Finished creating file after ${elapsedMs}ms, size is ${(stat.size / 1024 / 1024).toFixed(1)}MB`)
     }
 }
