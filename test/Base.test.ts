@@ -47,8 +47,8 @@ describe("Syslog", () => {
         this.slow(100)
         it("can write a file without supplied path", () => {
             const logFileData = new Syslog(100, undefined, true)
-            assert(logFileData.filename, "filename is set")
             logFileData.build()
+            assert(logFileData.filename, "filename is set")
             assert(
                 fs.existsSync(logFileData.filename!),
                 "File is created"
