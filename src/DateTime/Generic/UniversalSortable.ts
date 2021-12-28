@@ -1,10 +1,10 @@
 import * as fs from "fs"
-import { Base } from "../Base"
+import { Base } from "../../Base"
 
 /**
- * This is the ASL $Time{JZ} format
+ * This is the MS "u" timestamp format format
  */
-export class BigEndianLocalZone extends Base {
+export class UniversalSortable extends Base {
     logType = "isoDate"
 
     /**
@@ -24,7 +24,7 @@ export class BigEndianLocalZone extends Base {
                 if(offset > this.lines) {
                     break
                 }
-                block += `${lineDate.toISOString().replace(/T/, " ").replace(/[.]\d+/, "").replace(/Z$/, "+00")} ${this.getContent(offset)}\n`
+                block += `${lineDate.toISOString().replace(/T/, " ").replace(/[.]\d+/, "")} ${this.getContent(offset)}\n`
                 lineDate.setHours(lineDate.getHours() + 1)
             }
             fs.writeSync(fileHandle, block)

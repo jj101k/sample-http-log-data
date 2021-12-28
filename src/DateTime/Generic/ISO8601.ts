@@ -1,5 +1,5 @@
 import * as fs from "fs"
-import { Base } from "../Base"
+import { Base } from "../../Base"
 
 export class ISO8601 extends Base {
     logType = "isoDate"
