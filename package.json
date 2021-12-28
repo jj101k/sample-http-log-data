@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "prepare": "rm -rf dist; tsc",
-    "test": "mocha --require ts-node/register test/**/*.test.ts"
+    "test": "mocha --require ts-node/register test/{,*/,*/*/}*.test.ts"
   },
   "repository": {
     "type": "git",
