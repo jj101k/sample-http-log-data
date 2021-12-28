@@ -5,7 +5,7 @@ import { Base } from "../../Base"
  * This is the ASL $Time{JZ} format
  */
 export class BigEndianLocalZone extends Base {
-    logType = "isoDate"
+    logType = "TimeJZ"
 
     /**
      * Create the file

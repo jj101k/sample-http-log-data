@@ -5,7 +5,7 @@ import { Base } from "../../Base"
  * This is the MS "u" timestamp format format
  */
 export class UniversalSortable extends Base {
-    logType = "isoDate"
+    logType = "u"
 
     /**
      * Create the file
