@@ -7,8 +7,16 @@ describe("Syslog", () => {
         this.slow(20)
         const logFileData = new DateTime.Syslog(10, undefined, true)
         logFileData.build()
-        const content = fs.readFileSync(logFileData.filename!, {encoding: "utf-8"})
-        logFileData.finish()
+        let content: string
+        try {
+            assert(
+                logFileData.filename?.match(/[.]syslog[.]/),
+                `Filename ${logFileData.filename} matches expected pattern`
+            )
+            content = fs.readFileSync(logFileData.filename!, {encoding: "utf-8"})
+        } finally {
+            logFileData.finish()
+        }
         const lines = content.split(/\r?\n/)
         assert(lines[lines.length - 1] == "", "Ends with newline")
         lines.pop()
