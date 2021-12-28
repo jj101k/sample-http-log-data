@@ -24,9 +24,9 @@ export abstract class Base {
 
     protected getContent(offset: number) {
         if(this.randomLineLengths) {
-            return "#".repeat(Math.floor(Math.random() * 256))
+            return "#".repeat(1 + Math.floor(Math.random() * 256))
         } else {
-            return "#".repeat(offset % 256)
+            return "#".repeat(1 + offset % 256)
         }
     }
 
