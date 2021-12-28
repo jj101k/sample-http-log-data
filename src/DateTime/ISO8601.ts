@@ -1,13 +1,13 @@
 import * as fs from "fs"
-import { Base } from "./Base"
+import { Base } from "../Base"
 
-export class Syslog extends Base {
-    logType = "syslog"
+export class ISO8601 extends Base {
+    logType = "isoDate"
 
     /**
      * Create the file
      */
-     build() {
+    build() {
         this.initTemporaryDirectory()
         this.log(`Creating large file ${this.filename}`)
 
@@ -21,13 +21,7 @@ export class Syslog extends Base {
                 if(offset > this.lines) {
                     break
                 }
-                // Mmm dd hh:mm:ss
-                const dateString = [
-                    lineDate.toLocaleDateString("en-US", {month: "short"}),
-                    ("" + lineDate.getDate()).padStart(2, " "),
-                    lineDate.toLocaleTimeString("en-US", {hourCycle: "h23", hour: "2-digit", minute: "2-digit", second: "2-digit"}),
-                ].join(" ")
-                block += `${dateString} example example[0] ${this.getContent(offset)}\n`
+                block += `${lineDate.toISOString()} ${this.getContent(offset)}\n`
                 lineDate.setHours(lineDate.getHours() + 1)
             }
             fs.writeSync(fileHandle, block)

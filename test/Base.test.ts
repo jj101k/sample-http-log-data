@@ -1,4 +1,4 @@
-import { Syslog } from "../src"
+import { DateTime } from "../src"
 import fs from "fs"
 import assert from "assert"
 import path from "path"
@@ -17,7 +17,7 @@ describe("Base functionality", () => {
         })
         this.slow(100)
         it("can write a file with supplied path (basic, no cleanup)", () => {
-            const logFileData = new Syslog(100, dir, true)
+            const logFileData = new DateTime.Syslog(100, dir, true)
             try {
                 assert(
                     path.dirname(logFileData.filename!) == dir,
@@ -36,7 +36,7 @@ describe("Base functionality", () => {
             }
         })
         it("can write a file with supplied path (with cleanup)", () => {
-            const logFileData = new Syslog(100, dir, true)
+            const logFileData = new DateTime.Syslog(100, dir, true)
             logFileData.build()
             logFileData.finish()
             assert(!fs.existsSync(logFileData.filename!), "File is removed in cleanup")
@@ -46,7 +46,7 @@ describe("Base functionality", () => {
     describe("Writes without supplied dir", function() {
         this.slow(100)
         it("can write a file without supplied path", () => {
-            const logFileData = new Syslog(100, undefined, true)
+            const logFileData = new DateTime.Syslog(100, undefined, true)
             logFileData.build()
             assert(logFileData.filename, "filename is set")
             assert(

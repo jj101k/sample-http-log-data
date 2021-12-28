@@ -1,11 +1,11 @@
-import { Syslog } from "../src"
+import { DateTime } from "../../src"
 import fs from "fs"
 import assert from "assert"
 
 describe("Syslog", () => {
     it("Writes in the expected format", function() {
         this.slow(20)
-        const logFileData = new Syslog(10, undefined, true)
+        const logFileData = new DateTime.Syslog(10, undefined, true)
         logFileData.build()
         const content = fs.readFileSync(logFileData.filename!, {encoding: "utf-8"})
         logFileData.finish()

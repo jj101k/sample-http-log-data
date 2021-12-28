@@ -1,4 +1,3 @@
 export * from "./Base"
-export * from "./ISODate"
+export * as DateTime from "./DateTime"
 export * from "./Number"
-export * from "./Syslog"
